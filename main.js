@@ -1,7 +1,7 @@
 const preview = document.querySelector('pre');
 const preview_code = document.querySelector('pre code');
 const url = new URL(window.location.href);
-const properties = ['background', 'background-color', 'color', 'display', 'font-weight', 'font-style', 'overflow-x', 'padding'];
+const properties = ['background', 'background-color', 'color', 'display', 'font-weight', 'font-style', 'overflow', 'padding'];
 
 const link = document.querySelector('link');
 const input = document.getElementById('input');
