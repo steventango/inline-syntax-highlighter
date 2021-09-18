@@ -1,7 +1,7 @@
 const preview = document.querySelector('pre');
 const preview_code = document.querySelector('pre code');
 const url = new URL(window.location.href);
-const properties = ['background', 'background-color', 'color', 'font-weight', 'font-style'];
+const properties = ['background', 'background-color', 'color', 'display', 'font-weight', 'font-style', 'overflow-x', 'padding'];
 
 const link = document.querySelector('link');
 const input = document.getElementById('input');
@@ -112,6 +112,8 @@ function update() {
   } else {
     output.value = preview.outerHTML;
   }
+  output.value = output.value.replace(/class="(.*?)" /g, '')
+  output.value = output.value.replace(/background: none 0% 0% \/ auto repeat scroll padding-box border-box /g, 'background: ')
 }
 
 language_selector.addEventListener('change', (e) => {
