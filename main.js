@@ -22,6 +22,10 @@ function change_language() {
   .filter(language => language.startsWith('language-'))
   );
   preview_code.classList.add(`language-${language}`);
+  const script = document.createElement('script');
+  script.src = `https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/languages/${language}.min.js`
+  script.addEventListener('load', update);
+  document.body.appendChild(script);
   url.searchParams.set('language', language);
   localStorage.setItem('language', language);
   language_selector.value = language;
