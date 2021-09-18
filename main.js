@@ -20,6 +20,7 @@ let inline_mode = url.searchParams.get('inline') === 'true' || localStorage.getI
 change_language();
 change_theme();
 toggle_letter_spacing();
+toggle_inline();
 
 function change_language() {
   preview_code.classList.remove(...Array.from(preview_code.classList)
