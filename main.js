@@ -1,7 +1,8 @@
 const preview = document.querySelector('pre');
 const preview_code = document.querySelector('pre code');
 const url = new URL(window.location.href);
-const properties = ['background', 'background-color', 'color', 'display', 'font-weight', 'font-style', 'overflow', 'padding'];
+const properties = ['background', 'background-color', 'color', 'font-weight', 'font-style'];
+const properties_noninline = ['display', 'overflow', 'padding'];
 
 const link = document.getElementById('theme_link');
 const input = document.getElementById('input');
@@ -86,12 +87,19 @@ function inline_style(element) {
   for (let property of properties) {
     element.style[property] = '';
   }
+  for (let property of properties_noninline) {
+    element.style[property] = '';
+  }
+  // https://stackoverflow.com/questions/25097566/css-style-to-inline-style-via-javascript
   const styles = window.getComputedStyle(element);
-  for (let key in styles) {
-    // https://stackoverflow.com/questions/25097566/css-style-to-inline-style-via-javascript
+  for (let key of properties) {
     let property = key.replace(/\-([a-z])/g, v => v[1].toUpperCase());
-    if (properties.indexOf(key) > -1) {
-      element.style[property] = styles[property];
+    element.style[property] = styles[key];
+  }
+  if (!inline_mode) {
+    for (let key of properties_noninline) {
+      let property = key.replace(/\-([a-z])/g, v => v[1].toUpperCase());
+      element.style[property] = styles[key];
     }
   }
 }
