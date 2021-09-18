@@ -1,0 +1,12 @@
+pre code {
+  min-height: calc((100vh - 104px) / 2);
+}
+
+div {
+  margin-bottom: 12px;
+}
+
+textarea {
+  width: calc(50% - 8px);
+  min-height: calc((100vh - 104px) / 2);
+}

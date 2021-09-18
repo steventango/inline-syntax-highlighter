@@ -3,7 +3,7 @@ const preview_code = document.querySelector('pre code');
 const url = new URL(window.location.href);
 const properties = ['background', 'background-color', 'color', 'display', 'font-weight', 'font-style', 'overflow', 'padding'];
 
-const link = document.querySelector('link');
+const link = document.getElementById('theme_link');
 const input = document.getElementById('input');
 const output = document.getElementById('output');
 const language_selector = document.getElementById('language_selector');
