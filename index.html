@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,9 @@
   <title>Inline Syntax Highlighter</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github.min.css">
 </head>
+
 <body>
-  <pre>
-    <code></code>
-  </pre>
+  <pre><code></code></pre>
   <div>
     <label for="language_selector">Language:</label>
     <select name="language_selector" id="language_selector">
@@ -453,11 +453,12 @@
       <option value="base16/zenburn">base16/zenburn</option>
     </select>
     <button id="letter_spacing_button">Enable Letter Spacing</button>
-    <button id="letter_spacing_button">Toggle Letter Spacing</button>
+    <button id="inline_button">Enable Inline Mode</button>
   </div>
   <textarea name="input" id="input" cols="60" rows="30" placeholder="Input"></textarea>
   <textarea name="output" id="output" cols="60" rows="30" placeholder="HTML Output"></textarea>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
   <script src="main.js"></script>
 </body>
+
 </html>

@@ -9,10 +9,12 @@ const output = document.getElementById('output');
 const language_selector = document.getElementById('language_selector');
 const theme_selector = document.getElementById('theme_selector');
 const letter_spacing_button = document.getElementById('letter_spacing_button');
+const inline_button = document.getElementById('inline_button');
 
 let language = url.searchParams.get('language') || localStorage.getItem('language') || 'python';
 let theme = url.searchParams.get('theme') || localStorage.getItem('theme') || 'github';
 let letter_spacing = url.searchParams.get('letter_spacing') === 'true' || localStorage.getItem('letter_spacing') === 'true' || false;
+let inline_mode = url.searchParams.get('inline') === 'true' || localStorage.getItem('inline') === 'true' || false;
 
 change_language();
 change_theme();
@@ -64,6 +66,20 @@ function toggle_letter_spacing() {
   update();
 }
 
+function toggle_inline() {
+  if (inline_mode) {
+    url.searchParams.set('inline', true);
+    localStorage.setItem('inline', true);
+    inline_button.textContent = 'Disable Inline Mode';
+  } else {
+    url.searchParams.set('inline', false);
+    localStorage.setItem('inline', false);
+    inline_button.textContent = 'Enable Inline Mode';
+  }
+  history.pushState(null, '', url);
+  update();
+}
+
 function inline_style(element) {
   for (let property of properties) {
     element.style[property] = '';
@@ -90,7 +106,11 @@ function inline() {
 function update() {
   hljs.highlightElement(preview_code);
   inline();
-  output.value = preview.outerHTML;
+  if (inline_mode) {
+    output.value = preview_code.outerHTML;
+  } else {
+    output.value = preview.outerHTML;
+  }
 }
 
 language_selector.addEventListener('change', (e) => {
@@ -106,6 +126,11 @@ theme_selector.addEventListener('change', (e) => {
 letter_spacing_button.addEventListener('click', () => {
   letter_spacing = !letter_spacing;
   toggle_letter_spacing();
+});
+
+inline_button.addEventListener('click', () => {
+  inline_mode = !inline_mode;
+  toggle_inline();
 });
 
 input.addEventListener('input', () => {
