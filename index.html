@@ -12,7 +12,8 @@
     <code class="preview"></code>
   </pre>
   <div>
-    <select name="language" id="language_selector">
+    <label for="language_selector">Language:</label>
+    <select name="language_selector" id="language_selector">
       <option value="lib">lib</option>
       <option value="1c">1c</option>
       <option value="abnf">abnf</option>
@@ -206,6 +207,7 @@
       <option value="yaml">yaml</option>
       <option value="zephir">zephir</option>
     </select>
+    <label for="theme_selector">Theme:</label>
     <select name="theme_selector" id="theme_selector">
       <option value="a11y-dark">a11y-dark</option>
       <option value="a11y-light">a11y-light</option>
@@ -452,8 +454,8 @@
     </select>
     <button id="letter_spacing_button">Toggle Letter Spacing</button>
   </div>
-  <textarea name="input" id="input" cols="30" rows="10"></textarea>
-  <textarea name="output" id="output" cols="30" rows="10"></textarea>
+  <textarea name="input" id="input" cols="60" rows="30" placeholder="Input"></textarea>
+  <textarea name="output" id="output" cols="60" rows="30" placeholder="HTML Output"></textarea>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
   <script src="main.js"></script>
 </body>
