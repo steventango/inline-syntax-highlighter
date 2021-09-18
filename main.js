@@ -9,9 +9,9 @@ const language_selector = document.getElementById('language_selector');
 const theme_selector = document.getElementById('theme_selector');
 const letter_spacing_button = document.getElementById('letter_spacing_button');
 
-let language = url.searchParams.get('language') || 'python';
-let theme = url.searchParams.get('theme') || 'github';
-let letter_spacing = url.searchParams.get('letter_spacing') || false;
+let language = url.searchParams.get('language') || localStorage.getItem('language') || 'python';
+let theme = url.searchParams.get('theme') || localStorage.getItem('theme') || 'github';
+let letter_spacing = url.searchParams.get('letter_spacing') === 'true' || localStorage.getItem('letter_spacing') === 'true' || false;
 
 change_language();
 change_theme();
@@ -23,6 +23,7 @@ function change_language() {
   );
   preview_code.classList.add(`language-${language}`);
   url.searchParams.set('language', language);
+  localStorage.setItem('language', language);
   language_selector.value = language;
   history.pushState(null, '', url);
   hljs.highlightElement(preview_code);
@@ -32,17 +33,20 @@ function change_theme() {
   document.querySelector('link').href = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/${theme}.min.css`;
   url.searchParams.set('theme', theme);
   theme_selector.value = theme;
+  localStorage.setItem('theme', theme);
   history.pushState(null, '', url);
   hljs.highlightElement(preview_code);
 }
 
 function toggle_letter_spacing() {
   if (letter_spacing) {
-    preview.style.letterSpacing = 'normal';
-    url.searchParams.set('letter_spacing', false);
-  } else {
-    preview.style.letterSpacing = '2px';
+    preview_code.style.letterSpacing = '2px';
     url.searchParams.set('letter_spacing', true);
+    localStorage.setItem('letter_spacing', true);
+  } else {
+    preview_code.style.letterSpacing = 'normal';
+    url.searchParams.set('letter_spacing', false);
+    localStorage.setItem('letter_spacing', false);
   }
   history.pushState(null, '', url);
   inline();
