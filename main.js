@@ -10,6 +10,7 @@ const language_selector = document.getElementById('language_selector');
 const theme_selector = document.getElementById('theme_selector');
 const letter_spacing_button = document.getElementById('letter_spacing_button');
 const inline_button = document.getElementById('inline_button');
+const copy_button = document.getElementById('copy_button');
 
 let language = url.searchParams.get('language') || localStorage.getItem('language') || 'python';
 let theme = url.searchParams.get('theme') || localStorage.getItem('theme') || 'github';
@@ -131,6 +132,11 @@ letter_spacing_button.addEventListener('click', () => {
 inline_button.addEventListener('click', () => {
   inline_mode = !inline_mode;
   toggle_inline();
+});
+
+copy_button.addEventListener('click', () => {
+  output.select();
+  navigator.clipboard.writeText(output.value);
 });
 
 input.addEventListener('input', () => {
