@@ -53,10 +53,12 @@ function toggle_letter_spacing() {
     preview_code.style.letterSpacing = '2px';
     url.searchParams.set('letter_spacing', true);
     localStorage.setItem('letter_spacing', true);
+    letter_spacing_button.textContent = 'Disable Letter Spacing';
   } else {
     preview_code.style.letterSpacing = 'normal';
     url.searchParams.set('letter_spacing', false);
     localStorage.setItem('letter_spacing', false);
+    letter_spacing_button.textContent = 'Enable Letter Spacing';
   }
   history.pushState(null, '', url);
   update();
